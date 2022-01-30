@@ -25,7 +25,7 @@ public class FindMinSorter implements Sorter {
 		return sortedList;
 	}
 
-	private int findMinIndex(final List<Integer> list, final Integer sortedMax) {
+	protected int findMinIndex(final List<Integer> list, final Integer sortedMax) {
 		int minIndex = 0;
 		Integer curMinValue = Integer.MAX_VALUE;
 
