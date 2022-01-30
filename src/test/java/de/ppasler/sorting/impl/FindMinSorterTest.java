@@ -16,13 +16,13 @@ import de.ppasler.sorting.Sorter;
 
 class FindMinSorterTest {
 
-	final Sorter sorter = new FindMinSorter();
+	final Sorter<Integer> sorter = new FindMinSorter<>();
 
 	public static Stream<Arguments> lists() {
 		return getLists();
 	}
 
-	@ParameterizedTest(name = "#{index}: sorted({0}) == {1}")
+	@ParameterizedTest(name = "#{index}: sort({0}) == {1}")
 	@MethodSource("lists")
 	void sort(final List<Integer> list, final List<Integer> expected) {
 		final List<Integer> sortedList = sorter.sort(list);

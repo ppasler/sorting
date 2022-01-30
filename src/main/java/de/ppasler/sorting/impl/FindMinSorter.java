@@ -3,39 +3,45 @@ package de.ppasler.sorting.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.ppasler.sorting.Sorter;
+import de.ppasler.sorting.AbstractSorter;
 
-public class FindMinSorter implements Sorter {
+public class FindMinSorter<T extends Comparable<T>> extends AbstractSorter<T> {
 
 	@Override
-	public List<Integer> sort(final List<Integer> list) {
-		final ArrayList<Integer> copiedList = new ArrayList<>(list); // handle multiple equal values
-		final ArrayList<Integer> sortedList = new ArrayList<>(list.size());
+	public List<T> sort(final List<T> list) {
+		final ArrayList<T> copiedList = new ArrayList<>(list);
 
-		Integer sortedMax = Integer.MIN_VALUE;
+		T sortedMax = null;
 		for (int i = 0; i < list.size(); i++) {
-			int minIndex = findMinIndex(copiedList, sortedMax);
-			Integer minValue = copiedList.get(minIndex);
+			int minIndex = i + findMinIndex(copiedList.subList(i, copiedList.size()), sortedMax);
+			T minValue = copiedList.get(minIndex);
 
 			sortedMax = minValue;
-			sortedList.add(minValue);
 			copiedList.remove(minIndex);
+			copiedList.add(i, minValue);
 		}
 
-		return sortedList;
+		return copiedList;
 	}
 
-	protected int findMinIndex(final List<Integer> list, final Integer sortedMax) {
+	private int findMinIndex(final List<T> list, final T sortedMax) {
 		int minIndex = 0;
-		Integer curMinValue = Integer.MAX_VALUE;
+		T curMinValue = list.get(0);
 
-		for (int j = 0; j < list.size(); j++) {
-			final Integer item = list.get(j);
-			if (curMinValue > item && item >= sortedMax) {
+		for (int j = 1; j < list.size(); j++) {
+			final T item = list.get(j);
+			if (gt(curMinValue, item) && nullSafeGte(item, sortedMax)) {
 				curMinValue = item;
 				minIndex = j;
 			}
 		}
 		return minIndex;
+	}
+
+	private boolean nullSafeGte(final T x, final T y) {
+		if (y == null) { // everything is greater null...
+			return true;
+		}
+		return gte(x, y);
 	}
 }
