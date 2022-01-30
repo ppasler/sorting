@@ -12,9 +12,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import de.ppasler.sorting.Sorter;
 
-class SimpleSorterTest {
+class FindMinSorterTest {
 
-	final Sorter sorter = new SimpleSorter();
+	final Sorter sorter = new FindMinSorter();
 
 	public static Stream<Arguments> lists() {
 		return getLists();

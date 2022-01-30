@@ -15,6 +15,9 @@ public class DataProvider {
 	public static final List<Integer> DOUBLE = asList(2, 1, 2, 3);
 	public static final List<Integer> DOUBLE_SORTED = asList(1, 2, 2, 3);
 
+	public static final List<Integer> TRIPLE = asList(2, 1, 2, 3, 2);
+	public static final List<Integer> TRIPLE_SORTED = asList(1, 2, 2, 2, 3);
+
 	public static final List<Integer> SORTED = asList(1, 2, 3, 4);
 
 	public static final List<Integer> REVERSED = asList(4, 3, 2, 1);
@@ -26,6 +29,7 @@ public class DataProvider {
 		return Stream.of(
 				Arguments.of(SIMPLE, SIMPLE_SORTED),
 				Arguments.of(DOUBLE, DOUBLE_SORTED),
+				Arguments.of(TRIPLE, TRIPLE_SORTED),
 				Arguments.of(SORTED, SIMPLE_SORTED),
 				Arguments.of(REVERSED, SIMPLE_SORTED),
 				Arguments.of(EXTENDED, EXTENDED_SORTED)
