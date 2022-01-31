@@ -22,9 +22,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 import de.ppasler.sorting.Sorter;
 import de.ppasler.sorting.obj.Fruit;
 
-class BuiltInSorterTest {
+class BuiltInStreamSorterTest {
 
-	final Sorter<Integer> sorter = new BuiltInCollectionsSorter<>();
+	final Sorter<Integer> sorter = new BuiltInStreamSorter<>();
 
 	public static Stream<Arguments> lists() {
 		return getLists();
@@ -40,7 +40,7 @@ class BuiltInSorterTest {
 
 	@Test
 	void sort_sortsStrings() {
-		final Sorter<String> stringSorter = new BuiltInCollectionsSorter<>();
+		final Sorter<String> stringSorter = new BuiltInStreamSorter<>();
 
 		final List<String> sortedList = stringSorter.sort(SIMPLE_STRING);
 
@@ -58,7 +58,7 @@ class BuiltInSorterTest {
 
 	@Test
 	void sort_isStable() {
-		final Sorter<Fruit> fruitSorter = new BuiltInCollectionsSorter<>();
+		final Sorter<Fruit> fruitSorter = new BuiltInStreamSorter<>();
 
 		List<Fruit> sortedList = fruitSorter.sort(FRUITS);
 
