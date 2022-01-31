@@ -1,22 +1,26 @@
 package de.ppasler.sorting.impl;
 
+import static de.ppasler.sorting.DataProvider.FRUITS;
+import static de.ppasler.sorting.DataProvider.FRUITS_SORTED;
 import static de.ppasler.sorting.DataProvider.SIMPLE_STRING;
 import static de.ppasler.sorting.DataProvider.SIMPLE_STRING_SORTED;
 import static de.ppasler.sorting.DataProvider.getLists;
 import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToObject;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertSame;
 
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import de.ppasler.sorting.Sorter;
+import de.ppasler.sorting.obj.Fruit;
 
 class BuiltInSorterTest {
 
@@ -53,17 +57,11 @@ class BuiltInSorterTest {
 	}
 
 	@Test
-	@Disabled
 	void sort_isStable() {
-		final Integer first = new Integer(2);
-		final Integer second = new Integer(2);
-		final Integer third = new Integer(2);
-		List<Integer> list = asList(first, 3, second, 1, third);
+		final Sorter<Fruit> fruitSorter = new BuiltInSorter<>();
 
-		List<Integer> sortedList = sorter.sort(list);
+		List<Fruit> sortedList = fruitSorter.sort(FRUITS);
 
-		assertSame(sortedList.get(1), first);
-		assertSame(sortedList.get(2), second);
-		assertSame(sortedList.get(3), third);
+		assertThat(sortedList, is(equalToObject(FRUITS_SORTED)));
 	}
 }

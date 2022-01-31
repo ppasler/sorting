@@ -1,11 +1,14 @@
 package de.ppasler.sorting;
 
+import static de.ppasler.sorting.obj.Fruit.Color;
 import static java.util.Arrays.asList;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.params.provider.Arguments;
+
+import de.ppasler.sorting.obj.Fruit;
 
 public class DataProvider {
 
@@ -27,6 +30,22 @@ public class DataProvider {
 
 	public static final List<String> SIMPLE_STRING = asList("banana", "cherry", "apple");
 	public static final List<String> SIMPLE_STRING_SORTED = asList("apple", "banana", "cherry");
+
+	public static final Fruit BANANA = new Fruit("banana", Color.YELLOW);
+	public static final Fruit LEMON = new Fruit("lemon", Color.YELLOW);
+	public static final Fruit PINEAPPLE = new Fruit("pineapple", Color.YELLOW);
+
+	public static final Fruit ORANGE = new Fruit("orange", Color.ORANGE);
+
+	public static final Fruit CHERRY = new Fruit("cherry", Color.RED);
+
+
+	public static final List<Fruit> FRUITS = asList(
+		LEMON, CHERRY, BANANA, ORANGE, PINEAPPLE
+	);
+	public static final List<Fruit> FRUITS_SORTED = asList(
+			ORANGE, CHERRY, LEMON, BANANA, PINEAPPLE
+	);
 
 	public static Stream<Arguments> getLists() {
 		return Stream.of(

@@ -1,9 +1,14 @@
 package de.ppasler.sorting.impl;
 
+import static de.ppasler.sorting.DataProvider.FRUITS;
+import static de.ppasler.sorting.DataProvider.FRUITS_SORTED;
 import static de.ppasler.sorting.DataProvider.SIMPLE_STRING;
 import static de.ppasler.sorting.DataProvider.SIMPLE_STRING_SORTED;
 import static de.ppasler.sorting.DataProvider.getLists;
 import static java.util.Arrays.asList;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalToObject;
+import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
@@ -15,6 +20,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import de.ppasler.sorting.Sorter;
+import de.ppasler.sorting.obj.Fruit;
 
 class FindMinSorterTest {
 
@@ -48,5 +54,14 @@ class FindMinSorterTest {
 		sorter.sort(list);
 
 		assertEquals(asList(3, 5, 1), list);
+	}
+
+	@Test
+	void sort_isStable() {
+		final Sorter<Fruit> fruitSorter = new FindMinSorter<>();
+
+		List<Fruit> sortedList = fruitSorter.sort(FRUITS);
+
+		assertThat(sortedList, is(equalToObject(FRUITS_SORTED)));
 	}
 }
