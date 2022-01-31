@@ -1,11 +1,13 @@
 package de.ppasler.sorting.impl;
 
+import static de.ppasler.sorting.util.GenericsComparer.lte;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import de.ppasler.sorting.AbstractSorter;
+import de.ppasler.sorting.Sorter;
 
-public class SimpleSorter<T extends Comparable<T>> extends AbstractSorter<T> {
+public class SimpleSorter<T extends Comparable<T>> implements Sorter<T> {
 
 	@Override
 	public List<T> sort(final List<T> list) {
