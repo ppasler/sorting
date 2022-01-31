@@ -6,6 +6,7 @@ import java.util.List;
  * Interface for sorting {@link List} in-place
  */
 public abstract class AbstractSorter<T extends Comparable<T>> implements Sorter<T> {
+
 	public abstract List<T> sort(List<T> list);
 
 	protected boolean gt(final T x, final T y) {

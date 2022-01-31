@@ -9,7 +9,7 @@ public class FindMinSorter<T extends Comparable<T>> extends AbstractSorter<T> {
 
 	@Override
 	public List<T> sort(final List<T> list) {
-		final ArrayList<T> copiedList = new ArrayList<>(list);
+		final List<T> copiedList = new ArrayList<>(list);
 
 		T sortedMax = null;
 		for (int i = 0; i < list.size(); i++) {

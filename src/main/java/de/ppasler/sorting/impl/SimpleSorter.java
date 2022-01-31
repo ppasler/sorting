@@ -9,7 +9,7 @@ public class SimpleSorter<T extends Comparable<T>> extends AbstractSorter<T> {
 
 	@Override
 	public List<T> sort(final List<T> list) {
-		final ArrayList<T> sortedList = new ArrayList<>(list.size());
+		final List<T> sortedList = new ArrayList<>(list.size());
 
 		for (T item : list) {
 			int curIndex = sortedList.size();

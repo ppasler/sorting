@@ -1,5 +1,7 @@
 package de.ppasler.sorting.impl;
 
+import static de.ppasler.sorting.DataProvider.SIMPLE_STRING;
+import static de.ppasler.sorting.DataProvider.SIMPLE_STRING_SORTED;
 import static de.ppasler.sorting.DataProvider.getLists;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,26 +35,20 @@ class SimpleSorterTest {
 	}
 
 	@Test
+	void sort_sortsStrings() {
+		final Sorter<String> stringSorter = new SimpleSorter<>();
+
+		final List<String> sortedList = stringSorter.sort(SIMPLE_STRING);
+
+		assertEquals(SIMPLE_STRING_SORTED, sortedList);
+	}
+
+	@Test
 	void sort_originalListUnchanged() {
-		List<Integer> list = asList(3, 5, 1);
+		final List<Integer> list = asList(3, 5, 1);
 
 		sorter.sort(list);
 
 		assertEquals(asList(3, 5, 1), list);
-	}
-
-	@Test
-	@Disabled
-	void sort_isStable() {
-		final Integer first = new Integer(2);
-		final Integer second = new Integer(2);
-		final Integer third = new Integer(2);
-		List<Integer> list = asList(first, 3, second, 1, third);
-
-		List<Integer> sortedList = sorter.sort(list);
-
-		assertSame(sortedList.get(1), first);
-		assertSame(sortedList.get(2), second);
-		assertSame(sortedList.get(3), third);
 	}
 }

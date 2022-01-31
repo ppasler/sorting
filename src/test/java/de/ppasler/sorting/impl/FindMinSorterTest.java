@@ -1,5 +1,7 @@
 package de.ppasler.sorting.impl;
 
+import static de.ppasler.sorting.DataProvider.SIMPLE_STRING;
+import static de.ppasler.sorting.DataProvider.SIMPLE_STRING_SORTED;
 import static de.ppasler.sorting.DataProvider.getLists;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,8 +33,17 @@ class FindMinSorterTest {
 	}
 
 	@Test
+	void sort_sortsStrings() {
+		final Sorter<String> stringSorter = new FindMinSorter<>();
+
+		final List<String> sortedList = stringSorter.sort(SIMPLE_STRING);
+
+		assertEquals(SIMPLE_STRING_SORTED, sortedList);
+	}
+
+	@Test
 	void sort_originalListUnchanged() {
-		List<Integer> list = asList(3, 5, 1);
+		final List<Integer> list = asList(3, 5, 1);
 
 		sorter.sort(list);
 

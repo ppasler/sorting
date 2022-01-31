@@ -25,6 +25,9 @@ public class DataProvider {
 	public static final List<Integer> EXTENDED = asList(9, 3, 1, 4, 7, 5, 2, 0, 6, 8);
 	public static final List<Integer> EXTENDED_SORTED = asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9);
 
+	public static final List<String> SIMPLE_STRING = asList("banana", "cherry", "apple");
+	public static final List<String> SIMPLE_STRING_SORTED = asList("apple", "banana", "cherry");
+
 	public static Stream<Arguments> getLists() {
 		return Stream.of(
 				Arguments.of(SIMPLE, SIMPLE_SORTED),
