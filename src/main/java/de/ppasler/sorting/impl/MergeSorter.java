@@ -12,9 +12,10 @@ public class MergeSorter<T extends Comparable<T>> implements Sorter<T> {
 
 	@Override
 	public List<T> sort(final List<T> list) {
-		final List<T> copiedList = new LinkedList<>(list);
-
-		return mergeSort(copiedList);
+		final List<T> sortedList = mergeSort(list);
+		list.clear();
+		list.addAll(sortedList);
+		return list;
 	}
 
 	private List<T> mergeSort(final List<T> list) {

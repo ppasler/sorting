@@ -12,14 +12,11 @@ public class SelectionSorter<T extends Comparable<T>> implements Sorter<T> {
 
 	@Override
 	public List<T> sort(final List<T> list) {
-		final List<T> copiedList = new ArrayList<>(list);
-
-		for (int i = 0; i < copiedList.size() - 1; i++) {
-			int minIndex = findMinIndex(copiedList, i);
-			swap(copiedList, i, minIndex);
+		for (int i = 0; i < list.size() - 1; i++) {
+			int minIndex = findMinIndex(list, i);
+			swap(list, i, minIndex);
 		}
-
-		return copiedList;
+		return list;
 	}
 
 	private int findMinIndex(final List<T> list, final int start) {

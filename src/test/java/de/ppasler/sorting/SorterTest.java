@@ -1,11 +1,10 @@
-package de.ppasler.sorting.impl;
+package de.ppasler.sorting;
 
-import static de.ppasler.sorting.DataProvider.FRUITS;
 import static de.ppasler.sorting.DataProvider.FRUITS_SORTED;
-import static de.ppasler.sorting.DataProvider.SIMPLE_STRING;
 import static de.ppasler.sorting.DataProvider.SIMPLE_STRING_SORTED;
+import static de.ppasler.sorting.DataProvider.getFruits;
 import static de.ppasler.sorting.DataProvider.getLists;
-import static java.util.Arrays.asList;
+import static de.ppasler.sorting.DataProvider.getStrings;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalToObject;
 import static org.hamcrest.Matchers.is;
@@ -14,17 +13,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import de.ppasler.sorting.Sorter;
 import de.ppasler.sorting.obj.Fruit;
 
-class BuiltInStreamSorterTest {
+@Disabled
+public class SorterTest {
 
-	final Sorter<Integer> sorter = new BuiltInStreamSorter<>();
+	final Sorter<Integer> sorter;
+	final Class<? extends Sorter> clazz;
+
+	public SorterTest(final Class<? extends Sorter> clazz) throws Exception {
+		this.clazz = clazz;
+		sorter = newInstance();
+	}
+
+	private Sorter newInstance() throws Exception {
+		return clazz.newInstance();
+	}
 
 	public static Stream<Arguments> lists() {
 		return getLists();
@@ -39,28 +49,20 @@ class BuiltInStreamSorterTest {
 	}
 
 	@Test
-	void sort_sortsStrings() {
-		final Sorter<String> stringSorter = new BuiltInStreamSorter<>();
+	void sort_sortsStrings() throws Exception {
+		final Sorter<String> stringSorter = newInstance();
 
-		final List<String> sortedList = stringSorter.sort(SIMPLE_STRING);
+		final List<String> sortedList = stringSorter.sort(getStrings());
 
 		assertEquals(SIMPLE_STRING_SORTED, sortedList);
 	}
 
 	@Test
-	void sort_originalListUnchanged() {
-		final List<Integer> list = asList(3, 5, 1);
+	@Disabled
+	void sort_isStable() throws Exception {
+		final Sorter<Fruit> fruitSorter = newInstance();
 
-		sorter.sort(list);
-
-		assertEquals(asList(3, 5, 1), list);
-	}
-
-	@Test
-	void sort_isStable() {
-		final Sorter<Fruit> fruitSorter = new BuiltInStreamSorter<>();
-
-		List<Fruit> sortedList = fruitSorter.sort(FRUITS);
+		List<Fruit> sortedList = fruitSorter.sort(getFruits());
 
 		assertThat(sortedList, is(equalToObject(FRUITS_SORTED)));
 	}

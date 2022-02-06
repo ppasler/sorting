@@ -14,9 +14,8 @@ public class QuickSorter<T extends Comparable<T>> implements Sorter<T> {
 
 	@Override
 	public List<T> sort(final List<T> list) {
-		final List<T> copiedList = new LinkedList<>(list);
-
-		return quickSort(copiedList, 0, copiedList.size() - 1);
+		quickSort(list, 0, list.size() - 1);
+		return list;
 	}
 
 	private List<T> quickSort(final List<T> list, final int left, final int right) {
