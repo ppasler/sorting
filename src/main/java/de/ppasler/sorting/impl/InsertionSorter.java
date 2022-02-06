@@ -15,23 +15,18 @@ public class InsertionSorter<T extends Comparable<T>> implements Sorter<T> {
 		final List<T> copiedList = new ArrayList<>(list);
 
 		for (int i = 1; i < copiedList.size(); i++) {
-			final T value = copiedList.get(i);
-			int j = i;
-			while (j > 0 && gt(copiedList.get(j - 1), value)) {
-				swap(copiedList, j, j - 1);
-				j--;
-			}
+			final T value = copiedList.remove(i);
+			int position = getPosition(copiedList, value, i);
+			copiedList.add(position, value);
 		}
 
 		return copiedList;
 	}
 
-	private void move(final List<T> list, final int from, final int to) {
-		if (from == to) {
-			return;
+	private int getPosition(List<T> copiedList, T value, int j) {
+		while (j > 0 && gt(copiedList.get(j - 1), value)) {
+			j--;
 		}
-
-		final T value = list.remove(from);
-		list.add(to, value);
+		return j;
 	}
 }
