@@ -43,27 +43,28 @@ public class SorterTest {
 	@ParameterizedTest(name = "#{index}: sort({0}) == {1}")
 	@MethodSource("lists")
 	void sort(final List<Integer> list, final List<Integer> expected) {
-		final List<Integer> sortedList = sorter.sort(list);
+		sorter.sort(list);
 
-		assertEquals(expected, sortedList);
+		assertThat(list, is(expected));
 	}
 
 	@Test
 	void sort_sortsStrings() throws Exception {
 		final Sorter<String> stringSorter = newInstance();
+		final List<String> strings = getStrings();
 
-		final List<String> sortedList = stringSorter.sort(getStrings());
+		stringSorter.sort(strings);
 
-		assertEquals(SIMPLE_STRING_SORTED, sortedList);
+		assertThat(strings, is(SIMPLE_STRING_SORTED));
 	}
 
 	@Test
-	@Disabled
 	void sort_isStable() throws Exception {
 		final Sorter<Fruit> fruitSorter = newInstance();
+		final List<Fruit> fruits = getFruits();
 
-		List<Fruit> sortedList = fruitSorter.sort(getFruits());
+		fruitSorter.sort(fruits);
 
-		assertThat(sortedList, is(equalToObject(FRUITS_SORTED)));
+		assertThat(fruits.equals(FRUITS_SORTED), is(fruitSorter.isStable()));
 	}
 }

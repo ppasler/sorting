@@ -11,11 +11,15 @@ import de.ppasler.sorting.Sorter;
 public class MergeSorter<T extends Comparable<T>> implements Sorter<T> {
 
 	@Override
-	public List<T> sort(final List<T> list) {
+	public void sort(final List<T> list) {
 		final List<T> sortedList = mergeSort(list);
 		list.clear();
 		list.addAll(sortedList);
-		return list;
+	}
+
+	@Override
+	public boolean isStable() {
+		return true;
 	}
 
 	private List<T> mergeSort(final List<T> list) {
