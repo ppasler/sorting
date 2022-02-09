@@ -7,6 +7,9 @@ import java.util.List;
 
 import de.ppasler.sorting.Sorter;
 
+/**
+ * @see <a href="https://de.wikipedia.org/wiki/Selectionsort">Selectionsort</a>
+ */
 public class SelectionSorter<T extends Comparable<T>> implements Sorter<T> {
 
 	@Override

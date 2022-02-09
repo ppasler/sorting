@@ -9,6 +9,9 @@ import java.util.List;
 
 import de.ppasler.sorting.Sorter;
 
+/**
+ * @see <a href="https://de.wikipedia.org/wiki/Quicksort">Quicksort</a>
+ */
 public class QuickSorter<T extends Comparable<T>> implements Sorter<T> {
 
 	@Override

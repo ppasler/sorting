@@ -6,6 +6,9 @@ import java.util.List;
 
 import de.ppasler.sorting.Sorter;
 
+/**
+ * @see <a href="https://de.wikipedia.org/wiki/Insertionsort">Insertionsort</a>
+ */
 public class InsertionSorter<T extends Comparable<T>> implements Sorter<T> {
 
 	@Override

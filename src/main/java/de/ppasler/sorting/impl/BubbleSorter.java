@@ -7,6 +7,9 @@ import java.util.List;
 
 import de.ppasler.sorting.Sorter;
 
+/**
+ * @see <a href="https://de.wikipedia.org/wiki/Bubblesort">Bubblesort</a>
+ */
 public class BubbleSorter<T extends Comparable<T>> implements Sorter<T> {
 
 	@Override
